@@ -14,26 +14,41 @@
 
 
 <script>
+import { computed, onMounted } from 'vue';
+import { useStore } from 'vuex';
+
 export default {
-  computed: {
-    thumbnailUrl() {
+  setup() {
+    const store = useStore();
+
+    const thumbnailUrl = computed(() => {
       // Vuex store'daki thumbnailUrl state'ini kullanarak thumbnail URL'sini alın
-      return this.$store.state.thumbnailUrl;
-    },
-    movieName() {
+      return store.state.thumbnailUrl;
+    });
+
+    const movieName = computed(() => {
       // Movie adını Vuex veya başka bir yöntemle alın
-      return this.$store.state.movieName;
-    },
-    description() {
+      return store.state.movieName;
+    });
+
+    const description = computed(() => {
       // Açıklamayı Vuex veya başka bir yöntemle alın
-      return this.$store.state.description;
-    },
-  },
-  mounted() {
+      return store.state.description;
+    });
+
     // Bileşen yüklendiğinde thumbnail'ı almak için Vuex action'ını çağırın
-    this.$store.dispatch('fetchThumbnail');
+    onMounted(() => {
+      store.dispatch('fetchThumbnail');
+    });
+
+    return {
+      thumbnailUrl,
+      movieName,
+      description,
+    };
   },
 };
+
 </script>
 
 

@@ -46,22 +46,19 @@ import { ref, computed, onMounted } from 'vue';
 
 export default {
   name: 'NavBar',
-  data() {
-    return {
-      showModal: false, // Modalın açık veya kapalı olduğunu takip eden değişken
-    };
-  },
-  methods: {
-    openModal() {
-      this.showModal = true; // Modalı aç
-      // Ek olarak modalın açıldığında yapılacak işlemleri burada gerçekleştirebilirsiniz
-    },
-    closeModal() {
-      this.showModal = false; // Modalı kapat
-      // Ek olarak modalın kapatıldığında yapılacak işlemleri burada gerçekleştirebilirsiniz
-    },
-  },
   setup() {
+    const showModal = ref(false); // Modalın açık veya kapalı olduğunu takip eden değişken
+
+    function openModal() {
+      showModal.value = true; // Modalı aç
+      // Ek olarak modalın açıldığında yapılacak işlemleri burada gerçekleştirebilirsiniz
+    }
+
+    function closeModal() {
+      showModal.value = false; // Modalı kapat
+      // Ek olarak modalın kapatıldığında yapılacak işlemleri burada gerçekleştirebilirsiniz
+    }
+
     const isScrolled = ref(false);
 
     // Navbar class'ını hesaplamak için computed kullanabiliriz
@@ -81,10 +78,14 @@ export default {
     }
 
     return {
+      showModal,
+      openModal,
+      closeModal,
       navbarClass,
     };
   },
 };
+
 </script>
 
 <style scoped>

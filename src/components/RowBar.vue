@@ -34,40 +34,54 @@
 </template>
 
 <script>
+import { computed, ref } from 'vue';
+import { useStore } from 'vuex';
+
 export default {
-  computed: {
-    rowThumbnails() {
-      return this.$store.state.rowThumbnails;
-    },
-    selectedImage() {
-      return this.$store.state.selectedImage;
-    },
-    selectedName(){
-      return this.$store.state.selectedName;
-    },
-    selectedDescription(){
-      return this.$store.state.selectedDescription;
-    }
-},
-    data() {
-      return {
-        showModal: false, // Modalın açık veya kapalı olduğunu takip eden değişken
-      };
-    },
-  
-  methods: {
-    openModal(selectedRowThumbnail) {
-      this.showModal = true;  // Modal'ı açmak için
-     
-      this.$store.commit('SET_SELECTED_IMAGE', selectedRowThumbnail.thumbnail);
-      this.$store.commit('SET_SELECTED_NAME', selectedRowThumbnail.name);
-      this.$store.commit('SET_SELECTED_DESCRIPTION', selectedRowThumbnail.description);
-    },
-    closeModal() {
-      this.showModal = false; // Modalı kapat
-    },
-  },
+  setup() {
+    const store = useStore();
+
+    const rowThumbnails = computed(() => {
+      return store.state.rowThumbnails;
+    });
+
+    const selectedImage = computed(() => {
+      return store.state.selectedImage;
+    });
+
+    const selectedName = computed(() => {
+      return store.state.selectedName;
+    });
+
+    const selectedDescription = computed(() => {
+      return store.state.selectedDescription;
+    });
+
+    const showModal = ref(false);
+
+    const openModal = (selectedRowThumbnail) => {
+      showModal.value = true;
+      store.commit('SET_SELECTED_IMAGE', selectedRowThumbnail.thumbnail);
+      store.commit('SET_SELECTED_NAME', selectedRowThumbnail.name);
+      store.commit('SET_SELECTED_DESCRIPTION', selectedRowThumbnail.description);
+    };
+
+    const closeModal = () => {
+      showModal.value = false;
+    };
+
+    return {
+      rowThumbnails,
+      selectedImage,
+      selectedName,
+      selectedDescription,
+      showModal,
+      openModal,
+      closeModal
+    };
+  }
 };
+
 </script>
 
 <style scoped>
