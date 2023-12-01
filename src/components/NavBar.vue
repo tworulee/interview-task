@@ -42,10 +42,10 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted } from "vue";
 
 export default {
-  name: 'NavBar',
+  name: "NavBar",
   setup() {
     const showModal = ref(false); // Modalın açık veya kapalı olduğunu takip eden değişken
 
@@ -63,12 +63,12 @@ export default {
 
     // Navbar class'ını hesaplamak için computed kullanabiliriz
     const navbarClass = computed(() => {
-      return isScrolled.value ? 'scrolled' : '';
+      return isScrolled.value ? "scrolled" : "";
     });
 
     // Sayfa yüklendiğinde scroll olayını dinleyelim
     onMounted(() => {
-      window.addEventListener('scroll', handleScroll);
+      window.addEventListener("scroll", handleScroll);
     });
 
     // Scroll işlemi gerçekleştiğinde çalışacak fonksiyonumuz
@@ -85,7 +85,6 @@ export default {
     };
   },
 };
-
 </script>
 
 <style scoped>

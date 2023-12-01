@@ -11,10 +11,10 @@ export default {
       const thumbnailUrl = response.data.data.results[i].thumbnail.path + '.' + response.data.data.results[i].thumbnail.extension; // API yanıtından thumbnail URL'sini alın (bu örnek verilerle ilgili)
       const movieName = response.data.data.results[i].name
       const description = response.data.data.results[i].description
-
+      // -----------------------------------------------
 
       const rowThumbnails = response.data.data.results
-                  .slice(0, 10)
+                  .slice(0, 11)
                   .map(result => ({
                      thumbnail: result.thumbnail.path + '.' + result.thumbnail.extension,
                      name: result.name,

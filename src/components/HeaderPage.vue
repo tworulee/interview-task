@@ -27,12 +27,12 @@ export default {
     });
 
     const movieName = computed(() => {
-      // Movie adını Vuex veya başka bir yöntemle alın
+      // Movie adını Vuexle alın
       return store.state.movieName;
     });
 
     const description = computed(() => {
-      // Açıklamayı Vuex veya başka bir yöntemle alın
+      // Açıklamayı Vuexle alın
       return store.state.description;
     });
 

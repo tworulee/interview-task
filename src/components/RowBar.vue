@@ -15,6 +15,7 @@
             </div>
           </th>
         </tr>
+        
       </table>
     </div>
     <!-- Modal -->
@@ -23,8 +24,8 @@
         <div class="card">
           <div class="first">
             <img :src="selectedImage" class="img" />
-            <h1 class="title">{{selectedName}}</h1>
-            <p class="text">{{selectedDescription}}</p>
+            <h1 class="title">{{ selectedName }}</h1>
+            <p class="text">{{ selectedDescription }}</p>
           </div>
         </div>
         <button class="close" @click="closeModal">Kapat</button>
@@ -34,8 +35,8 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue';
-import { useStore } from 'vuex';
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
 
 export default {
   setup() {
@@ -61,9 +62,12 @@ export default {
 
     const openModal = (selectedRowThumbnail) => {
       showModal.value = true;
-      store.commit('SET_SELECTED_IMAGE', selectedRowThumbnail.thumbnail);
-      store.commit('SET_SELECTED_NAME', selectedRowThumbnail.name);
-      store.commit('SET_SELECTED_DESCRIPTION', selectedRowThumbnail.description);
+      store.commit("SET_SELECTED_IMAGE", selectedRowThumbnail.thumbnail);
+      store.commit("SET_SELECTED_NAME", selectedRowThumbnail.name);
+      store.commit(
+        "SET_SELECTED_DESCRIPTION",
+        selectedRowThumbnail.description
+      );
     };
 
     const closeModal = () => {
@@ -77,11 +81,10 @@ export default {
       selectedDescription,
       showModal,
       openModal,
-      closeModal
+      closeModal,
     };
-  }
+  },
 };
-
 </script>
 
 <style scoped>
